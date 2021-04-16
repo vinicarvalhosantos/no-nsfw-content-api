@@ -2,19 +2,19 @@ import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedCol
 
 
 @Entity()
-export class User {
+export class Server {
 
   @PrimaryGeneratedColumn({ name: "id" })
   id: number;
 
-  @Column({ name: "userId", type: "bigint", unique: true })
-  userId: number;
+  @Column({ name: "serverId", type: "bigint", unique: true })
+  serverId: number;
 
-  @Column({ name: "username" })
-  username: string;
+  @Column({ name: "serverName" })
+  serverName: string;
 
-  @Column({ name: "userTag", unique: true })
-  userTag: string;
+  @Column({ name: "ownerId", type: "bigint" })
+  ownerId: number;
 
   @CreateDateColumn({ name: "created_at", type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
   createdAt?: Date;
