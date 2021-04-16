@@ -1,4 +1,4 @@
-import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn, RelationId } from 'typeorm';
+import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 
 @Entity()
@@ -7,13 +7,13 @@ export class Server {
   @PrimaryGeneratedColumn({ name: "id" })
   id: number;
 
-  @Column({ name: "serverId", type: "bigint", unique: true })
+  @Column({ name: "server_id", type: "bigint", unique: true })
   serverId: number;
 
-  @Column({ name: "serverName" })
+  @Column({ name: "server_name" })
   serverName: string;
 
-  @Column({ name: "ownerId", type: "bigint" })
+  @Column({ name: "owner_id", type: "bigint" })
   ownerId: number;
 
   @CreateDateColumn({ name: "created_at", type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
