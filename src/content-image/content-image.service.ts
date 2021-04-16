@@ -20,21 +20,28 @@ export class ImageContentService {
 
   async checkImageContent(dtoImage: CheckImageContentDto) {
     try {
+      this.logger.log(`Cheking if url it is an image (url: ${dtoImage.urlImage})`)
       const isJpgOrPng = UrlCheckImageUtils.urlIsJpgOrPng(dtoImage.urlImage);
       const isGif = UrlCheckImageUtils.urlIsGif(dtoImage.urlImage);
       const resultObject = new ReadImageContentDto;
       if (isJpgOrPng || isGif) {
+        this.logger.log(`Starting image analyse(img: ${dtoImage.urlImage})`);
         const picture = await this.getPicture(dtoImage.urlImage);
         const model = await nsfw.load();
+        this.logger.log(`Decoding image(img: ${dtoImage.urlImage})`);
         const image = await tf.node.decodeImage(picture.data);
+        this.logger.log(`Checking if image are buffered(img: ${dtoImage.urlImage})`);
         if (Buffer.isBuffer(image) || Buffer.isBuffer(picture.data)) {
+          this.logger.log(`Classifying image(img: ${dtoImage.urlImage})`);
           // @ts-ignore
           const imagePredictions = isJpgOrPng ? await model.classify(image) : await model.classifyGif(picture.data);
           resultObject.urlImage = dtoImage.urlImage;
           resultObject.predictions = imagePredictions;
+          this.logger.log(`Returning image classification(img: ${dtoImage.urlImage})`);
           return resultObject;
         }
 
+        this.logger.log(`Disposing image(img: ${dtoImage.urlImage})`);
         await image.dispose();
       }
       throw new HttpException(`Do not found any image on url`, 404)
