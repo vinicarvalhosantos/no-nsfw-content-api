@@ -1,5 +1,5 @@
 import { Controller, Body, Post } from '@nestjs/common';
-import { ApiTags, ApiResponse, ApiOperation, ApiParam, ApiBody, ApiQuery } from '@nestjs/swagger';
+import { ApiTags, ApiResponse, ApiOperation, ApiBody } from '@nestjs/swagger';
 import { CheckImageContentDto } from './dto/check-image-content.dto';
 import { ReadImageContentDto } from './dto/read-image-content.dto';
 import { ResponseMapper } from '../decorator/response-mapper.decorator';
