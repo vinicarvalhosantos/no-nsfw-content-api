@@ -1,5 +1,5 @@
 FROM node:10-alpine
-EXPOSE 8080
+EXPOSE 5000
 COPY . /home/app
 WORKDIR /home/app
 RUN npm install
