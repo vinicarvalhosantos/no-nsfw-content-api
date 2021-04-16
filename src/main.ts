@@ -36,6 +36,7 @@ async function bootstrap() {
     .setDescription(pckg.description)
     .setVersion(pckg.version)
     .addTag('image-content', 'Image analyse')
+    .addTag('user', 'User controller')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
