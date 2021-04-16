@@ -10,6 +10,7 @@ import { TerminusModule } from '@nestjs/terminus';
 import { HealthModule } from './health/health.module';
 import { ImageContentModule } from './content-image/content-image.module';
 import { UserModule } from './user/user.module';
+import { ServerModule } from './server/server.module';
 
 @Module({
   imports: [
@@ -36,7 +37,8 @@ import { UserModule } from './user/user.module';
       useClass: TerminusOptionsService,
     }),
     ImageContentModule,
-    UserModule
+    UserModule,
+    ServerModule
   ]
 })
 export class AppModule { }
